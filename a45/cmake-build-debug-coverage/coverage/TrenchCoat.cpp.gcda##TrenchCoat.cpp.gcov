@@ -1,0 +1,83 @@
+        -:    0:Source:C:/Users/User/Desktop/lab4/Domain/TrenchCoat.cpp
+        -:    0:Graph:C:\Users\User\Desktop\lab4\cmake-build-debug-coverage\CMakeFiles\lab4.dir\Domain\TrenchCoat.cpp.gcno
+        -:    0:Data:C:\Users\User\Desktop\lab4\cmake-build-debug-coverage\CMakeFiles\lab4.dir\Domain\TrenchCoat.cpp.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://
+        -:    2:// Created by User on 3/18/2021.
+        -:    3://
+        -:    4:
+        -:    5://#include "../Domain/TrenchCoat.h"
+        -:    6:
+        -:    7:#include "TrenchCoat.h"
+        -:    8:
+        -:    9:// Create a trench coat
+      490:   10:TrenchCoat::TrenchCoat(string NewId, string NewSize, string NewColour ,int NewPrice, int NewQuantity, string NewPhotograph)
+      245:   10-block  0
+      245:   10-block  1
+        -:   11:{
+        -:   12:
+      245:   13:    this ->Id = std :: move(NewId);
+      245:   14:    this->Size =std :: move(NewSize);
+      245:   15:    this ->Colour =std :: move(NewColour);
+      245:   16:    this ->Price = NewPrice;
+      245:   17:    this ->Quantity = NewQuantity;
+      245:   18:    this ->Photograph =std :: move(NewPhotograph);
+      245:   19:}
+        -:   20:// Constructor to create a copy from an existing trench coat
+      484:   21:TrenchCoat::TrenchCoat(TrenchCoat* SomeTrenchCoat)
+      242:   21-block  0
+      242:   21-block  1
+    %%%%%:   21-block  2
+    %%%%%:   21-block  3
+    %%%%%:   21-block  4
+    %%%%%:   21-block  5
+        -:   22:{
+      242:   23:    this ->Id = SomeTrenchCoat-> GetId();
+      242:   23-block  0
+      242:   24:    this->Size =SomeTrenchCoat->GetSize();
+      242:   24-block  0
+      242:   25:    this ->Colour =SomeTrenchCoat->GetColour();
+      242:   25-block  0
+      242:   26:    this ->Price = SomeTrenchCoat->GetPrice();
+      242:   27:    this ->Quantity = SomeTrenchCoat->GetQuantity();
+      242:   28:    this ->Photograph =SomeTrenchCoat->GetPhotograph();
+      242:   28-block  0
+      242:   29:}
+        -:   30:// Getters
+    14648:   31:string TrenchCoat::GetId()
+    14648:   31-block  0
+        -:   32:{
+    14648:   33:    return this->Id;
+    14648:   33-block  0
+        -:   34:}
+      243:   35:string TrenchCoat::GetSize()
+      243:   35-block  0
+        -:   36:{
+      243:   37:    return this-> Size;
+      243:   37-block  0
+        -:   38:}
+      243:   39:string TrenchCoat::GetColour()
+      243:   39-block  0
+        -:   40:{
+      243:   41:    return this->Colour;
+      243:   41-block  0
+        -:   42:}
+      243:   43:int TrenchCoat::GetPrice() const
+      243:   43-block  0
+        -:   44:{
+      243:   45:    return this-> Price;
+      243:   45-block  0
+        -:   46:}
+      243:   47:int TrenchCoat::GetQuantity() const
+      243:   47-block  0
+        -:   48:{
+      243:   49:    return this-> Quantity;
+      243:   49-block  0
+        -:   50:}
+      243:   51:string TrenchCoat::GetPhotograph()
+      243:   51-block  0
+        -:   52:{
+      243:   53:    return this->Photograph;
+      243:   53-block  0
+        -:   54:}

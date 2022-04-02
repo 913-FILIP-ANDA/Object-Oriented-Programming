@@ -1,0 +1,479 @@
+        -:    0:Source:C:/Users/User/Desktop/lab4/Test/Test.cpp
+        -:    0:Graph:C:\Users\User\Desktop\lab4\cmake-build-debug-coverage\CMakeFiles\lab4.dir\Test\Test.cpp.gcno
+        -:    0:Data:C:\Users\User\Desktop\lab4\cmake-build-debug-coverage\CMakeFiles\lab4.dir\Test\Test.cpp.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://
+        -:    2:// Created by User on 3/20/2021.
+        -:    3://
+        -:    4:
+        -:    5:#include "Test.h"
+        -:    6:
+        -:    7:
+        -:    8:#include "assert.h"
+        -:    9:#include "../service/Service.h"
+        -:   10:#include "../AppException.h"
+        -:   11:
+        -:   12:// Add
+        1:   13:void AddCommand_DuplicateInput_ThrowException()
+        1:   13-block  0
+        -:   14:{
+        1:   15:    Service* Controller = new Service;
+        1:   15-block  0
+        1:   15-block  1
+    %%%%%:   15-block  2
+        -:   16:    bool AssertionResult;
+        -:   17:    try {
+        1:   18:        Controller->AddCommand("id", "a","black", 133, 2, "b");
+        1:   18-block  0
+        1:   18-block  1
+        1:   18-block  2
+        1:   18-block  3
+        1:   18-block  4
+        1:   18-block  5
+    %%%%%:   18-block  6
+    %%%%%:   18-block  7
+    %%%%%:   18-block  8
+    %%%%%:   18-block  9
+    %%%%%:   18-block 10
+    %%%%%:   18-block 11
+    %%%%%:   18-block 12
+    %%%%%:   18-block 13
+        1:   19:        Controller->AddCommand("id", "a","black", 133, 2, "b");
+        1:   19-block  0
+        1:   19-block  1
+        1:   19-block  2
+        1:   19-block  3
+    $$$$$:   19-block  4
+        1:   19-block  5
+        1:   19-block  6
+        1:   19-block  7
+        1:   19-block  8
+        1:   19-block  9
+        1:   19-block 10
+        1:   19-block 11
+        1:   19-block 12
+        1:   19-block 13
+    #####:   20:        AssertionResult = false;
+        -:   21:    }
+        1:   22:    catch (AppException)
+        1:   22-block  0
+        1:   22-block  1
+        -:   23:    {
+        1:   24:        AssertionResult = true;
+        -:   25:    }
+    =====:   26:    catch (...)
+    %%%%%:   26-block  0
+    %%%%%:   26-block  1
+        -:   27:    {
+    =====:   28:        AssertionResult = false;
+        -:   29:    }
+        1:   30:    delete Controller;
+        1:   30-block  0
+        1:   30-block  1
+        1:   31:    assert(AssertionResult);
+        1:   31-block  0
+    $$$$$:   31-block  1
+        1:   32:}
+        1:   32-block  0
+        -:   33:
+        1:   34:void AddCommand_ValidInput_CorrectAddition()
+        1:   34-block  0
+        -:   35:{
+        1:   36:    Service* Controller = new Service;
+        1:   36-block  0
+        1:   36-block  1
+    %%%%%:   36-block  2
+        -:   37:    bool AssertionResult;
+        -:   38:    try {
+        1:   39:        Controller->AddCommand("id", "a","black", 133, 2, "b");
+        1:   39-block  0
+        1:   39-block  1
+        1:   39-block  2
+        1:   39-block  3
+        1:   39-block  4
+        1:   39-block  5
+    %%%%%:   39-block  6
+    %%%%%:   39-block  7
+    %%%%%:   39-block  8
+    %%%%%:   39-block  9
+    %%%%%:   39-block 10
+    %%%%%:   39-block 11
+    %%%%%:   39-block 12
+    %%%%%:   39-block 13
+        1:   40:        AssertionResult = (*Controller->ListCommand())[0]->GetId() == "id";
+        1:   40-block  0
+        1:   40-block  1
+        1:   40-block  2
+        1:   40-block  3
+    %%%%%:   40-block  4
+    %%%%%:   40-block  5
+        -:   41:    }
+    =====:   42:    catch (...)
+    %%%%%:   42-block  0
+        -:   43:    {
+    =====:   44:        AssertionResult = false;
+        -:   45:    }
+        1:   46:    delete Controller;
+        1:   46-block  0
+        1:   46-block  1
+        1:   47:    assert(AssertionResult);
+        1:   47-block  0
+    $$$$$:   47-block  1
+        1:   48:}
+        1:   48-block  0
+        -:   49:
+        1:   50:void AddCommand_MassiveValidInput_CorrectResize()
+        1:   50-block  0
+        -:   51:{
+        1:   52:    Service* Controller = new Service;
+        1:   52-block  0
+    %%%%%:   52-block  1
+        -:   53:    bool AssertionResult;
+        -:   54:    try {
+      121:   55:        for (int i = 0; i < 120; i++)
+        1:   55-block  0
+      121:   55-block  1
+        -:   56:        {
+      120:   57:            char a[2] = "a";
+      120:   58:            a[0] = i;
+      120:   59:            Controller->AddCommand(string(a), "a","black", 133, 2, "b");
+      120:   59-block  0
+      120:   59-block  1
+      120:   59-block  2
+      120:   59-block  3
+      120:   59-block  4
+      120:   59-block  5
+    %%%%%:   59-block  6
+    %%%%%:   59-block  7
+    %%%%%:   59-block  8
+    %%%%%:   59-block  9
+    %%%%%:   59-block 10
+    %%%%%:   59-block 11
+    %%%%%:   59-block 12
+    %%%%%:   59-block 13
+    %%%%%:   59-block 14
+    %%%%%:   59-block 15
+        -:   60:        }
+        1:   61:        AssertionResult = Controller->ListCommand()->GetCount() == 120;
+        1:   61-block  0
+        1:   61-block  1
+        1:   61-block  2
+        -:   62:    }
+    =====:   63:    catch (...)
+    %%%%%:   63-block  0
+        -:   64:    {
+    =====:   65:        AssertionResult = false;
+        -:   66:    }
+        1:   67:    delete Controller;
+        1:   67-block  0
+        1:   67-block  1
+        1:   68:}
+        1:   68-block  0
+        -:   69:
+        -:   70:// Delete
+        1:   71:void DeleteCommand_BadInput_ThrowException()
+        1:   71-block  0
+        -:   72:{
+        1:   73:    Service* Controller = new Service;
+        1:   73-block  0
+        1:   73-block  1
+    %%%%%:   73-block  2
+        -:   74:    bool AssertionResult;
+        -:   75:    try {
+        1:   76:        Controller->DeleteCommand("id");
+        1:   76-block  0
+        1:   76-block  1
+    $$$$$:   76-block  2
+        1:   76-block  3
+        1:   76-block  4
+        1:   76-block  5
+    #####:   77:        AssertionResult = false;
+        -:   78:    }
+        1:   79:    catch (AppException)
+        1:   79-block  0
+        1:   79-block  1
+        -:   80:    {
+        1:   81:        AssertionResult = true;
+        -:   82:    }
+    =====:   83:    catch (...)
+    %%%%%:   83-block  0
+    %%%%%:   83-block  1
+        -:   84:    {
+    =====:   85:        AssertionResult = false;
+        -:   86:    }
+        1:   87:    delete Controller;
+        1:   87-block  0
+        1:   87-block  1
+        1:   88:    assert(AssertionResult);
+        1:   88-block  0
+    $$$$$:   88-block  1
+        1:   89:}
+        1:   89-block  0
+        -:   90:
+        1:   91:void DeleteCommand_ValidInput_CorrectRemoval()
+        1:   91-block  0
+        -:   92:{
+        1:   93:    Service* Controller = new Service;
+        1:   93-block  0
+        1:   93-block  1
+    %%%%%:   93-block  2
+        -:   94:    bool AssertionResult;
+        -:   95:    try {
+        1:   96:        Controller->AddCommand("id", "a","black", 133, 2, "b");
+        1:   96-block  0
+        1:   96-block  1
+        1:   96-block  2
+        1:   96-block  3
+        1:   96-block  4
+        1:   96-block  5
+    %%%%%:   96-block  6
+    %%%%%:   96-block  7
+    %%%%%:   96-block  8
+    %%%%%:   96-block  9
+    %%%%%:   96-block 10
+    %%%%%:   96-block 11
+    %%%%%:   96-block 12
+    %%%%%:   96-block 13
+        1:   97:        Controller->DeleteCommand("id");
+        1:   97-block  0
+        1:   97-block  1
+    %%%%%:   97-block  2
+    %%%%%:   97-block  3
+    %%%%%:   97-block  4
+        1:   98:        AssertionResult = Controller->ListCommand()->GetCount() == 0;
+        1:   98-block  0
+        1:   98-block  1
+        -:   99:    }
+    =====:  100:    catch (...)
+    %%%%%:  100-block  0
+        -:  101:    {
+    =====:  102:        AssertionResult = false;
+        -:  103:    }
+        1:  104:    delete Controller;
+        1:  104-block  0
+        1:  104-block  1
+        1:  105:    assert(AssertionResult);
+        1:  105-block  0
+    $$$$$:  105-block  1
+        1:  106:}
+        1:  106-block  0
+        -:  107:
+        -:  108:// Update
+        1:  109:void UpdateCommand_BadInput_ThrowException()
+        1:  109-block  0
+        -:  110:{
+        1:  111:    Service* Controller = new Service;
+        1:  111-block  0
+        1:  111-block  1
+    %%%%%:  111-block  2
+        -:  112:    bool AssertionResult;
+        -:  113:    try {
+        1:  114:        Controller->UpdateCommand("id1", "b","white", 24, 1, "a");
+        1:  114-block  0
+        1:  114-block  1
+        1:  114-block  2
+        1:  114-block  3
+        1:  114-block  4
+    $$$$$:  114-block  5
+        1:  114-block  6
+        1:  114-block  7
+        1:  114-block  8
+        1:  114-block  9
+        1:  114-block 10
+        1:  114-block 11
+        1:  114-block 12
+        1:  114-block 13
+        1:  114-block 14
+    #####:  115:        AssertionResult = false;
+        -:  116:    }
+        1:  117:    catch (AppException)
+        1:  117-block  0
+        1:  117-block  1
+        -:  118:    {
+        1:  119:        AssertionResult = true;
+        -:  120:    }
+    =====:  121:    catch (...)
+    %%%%%:  121-block  0
+    %%%%%:  121-block  1
+        -:  122:    {
+    =====:  123:        AssertionResult = false;
+        -:  124:    }
+        1:  125:    delete Controller;
+        1:  125-block  0
+        1:  125-block  1
+        1:  126:    assert(AssertionResult);
+        1:  126-block  0
+    $$$$$:  126-block  1
+        1:  127:}
+        1:  127-block  0
+        -:  128:
+        1:  129:void UpdateCommand_ValidInput_CorrectUpdate()
+        1:  129-block  0
+        -:  130:{
+        1:  131:    Service* Controller = new Service;
+        1:  131-block  0
+        1:  131-block  1
+    %%%%%:  131-block  2
+        -:  132:    bool AssertionResult;
+        -:  133:    try {
+        1:  134:        Controller->AddCommand("id", "a","black", 133, 2, "b");
+        1:  134-block  0
+        1:  134-block  1
+        1:  134-block  2
+        1:  134-block  3
+        1:  134-block  4
+        1:  134-block  5
+    %%%%%:  134-block  6
+    %%%%%:  134-block  7
+    %%%%%:  134-block  8
+    %%%%%:  134-block  9
+    %%%%%:  134-block 10
+    %%%%%:  134-block 11
+    %%%%%:  134-block 12
+    %%%%%:  134-block 13
+        1:  135:        Controller->UpdateCommand("id", "b","white", 133, 2, "c");
+        1:  135-block  0
+        1:  135-block  1
+        1:  135-block  2
+        1:  135-block  3
+        1:  135-block  4
+    %%%%%:  135-block  5
+    %%%%%:  135-block  6
+    %%%%%:  135-block  7
+    %%%%%:  135-block  8
+    %%%%%:  135-block  9
+    %%%%%:  135-block 10
+    %%%%%:  135-block 11
+    %%%%%:  135-block 12
+        1:  136:        TrenchCoat* Stored = (*Controller->ListCommand())[0];
+        1:  136-block  0
+        1:  137:        AssertionResult = Stored->GetSize() == "b" && Stored->GetColour() == "white"&&Stored->GetPrice()==133 && Stored->GetPhotograph() == "c" && Stored->GetQuantity() == 2;
+        1:  137-block  0
+        1:  137-block  1
+        1:  137-block  2
+        1:  137-block  3
+        1:  137-block  4
+        1:  137-block  5
+        1:  137-block  6
+        1:  137-block  7
+        1:  137-block  8
+        1:  137-block  9
+        1:  137-block 10
+        1:  137-block 11
+        1:  137-block 12
+        1:  137-block 13
+    $$$$$:  137-block 14
+        1:  137-block 15
+        1:  137-block 16
+        1:  137-block 17
+        1:  137-block 18
+        1:  137-block 19
+        1:  137-block 20
+    %%%%%:  137-block 21
+    %%%%%:  137-block 22
+    %%%%%:  137-block 23
+    %%%%%:  137-block 24
+    %%%%%:  137-block 25
+    %%%%%:  137-block 26
+    %%%%%:  137-block 27
+    %%%%%:  137-block 28
+    %%%%%:  137-block 29
+    %%%%%:  137-block 30
+        -:  138:    }
+    =====:  139:    catch (...)
+    %%%%%:  139-block  0
+        -:  140:    {
+    =====:  141:        AssertionResult = false;
+        -:  142:    }
+        1:  143:    delete Controller;
+        1:  143-block  0
+        1:  143-block  1
+        1:  144:    assert(AssertionResult);
+        1:  144-block  0
+    $$$$$:  144-block  1
+        1:  145:}
+        1:  145-block  0
+        -:  146:
+        1:  147:void FilterCommand_MassiveValidInput_CorrectExecution()
+        1:  147-block  0
+        -:  148:{
+        1:  149:    Service* Controller = new Service;
+        1:  149-block  0
+    %%%%%:  149-block  1
+        -:  150:    bool AssertionResult;
+        -:  151:    try {
+      121:  152:        for (int i = 0; i < 120; i++)
+        1:  152-block  0
+      121:  152-block  1
+        -:  153:        {
+      120:  154:            char a[2] = "a";
+      120:  155:            a[0] = i;
+      120:  156:            Controller->AddCommand(string(a), "a", "black",133, 2, "b");
+      120:  156-block  0
+      120:  156-block  1
+      120:  156-block  2
+      120:  156-block  3
+      120:  156-block  4
+      120:  156-block  5
+    %%%%%:  156-block  6
+    %%%%%:  156-block  7
+    %%%%%:  156-block  8
+    %%%%%:  156-block  9
+    %%%%%:  156-block 10
+    %%%%%:  156-block 11
+    %%%%%:  156-block 12
+    %%%%%:  156-block 13
+    %%%%%:  156-block 14
+        -:  157:        }
+        1:  158:        DynamicArray* StoredList = Controller->ListCommand();
+        1:  158-block  0
+        -:  159:        TrenchCoat* SomeCoat;
+      121:  160:        for (int i = 0; i < 120; i++)
+        1:  160-block  0
+      121:  160-block  1
+      120:  160-block  2
+        -:  161:        {
+      120:  162:            char a[2] = "a";
+      120:  163:            a[0] = i;
+      120:  164:            SomeCoat = (*StoredList)[i];
+      120:  164-block  0
+      120:  165:            if (SomeCoat->GetId() != a)
+      120:  165-block  0
+      120:  165-block  1
+      120:  165-block  2
+    %%%%%:  165-block  3
+    %%%%%:  165-block  4
+    %%%%%:  165-block  5
+    #####:  166:                throw "Error";
+    $$$$$:  166-block  0
+        -:  167:        }
+        1:  168:        AssertionResult = StoredList->GetCount() == 120;
+        1:  168-block  0
+        1:  168-block  1
+        -:  169:    }
+    =====:  170:    catch (...)
+    %%%%%:  170-block  0
+        -:  171:    {
+    =====:  172:        AssertionResult = false;
+        -:  173:    }
+        1:  174:    delete Controller;
+        1:  174-block  0
+        1:  174-block  1
+        1:  175:}
+        1:  175-block  0
+        -:  176:
+        -:  177:
+        1:  178:void RunTests()
+        1:  178-block  0
+        -:  179:{
+        1:  180:    AddCommand_ValidInput_CorrectAddition();
+        1:  180-block  0
+        1:  181:    AddCommand_DuplicateInput_ThrowException();
+        1:  182:    AddCommand_MassiveValidInput_CorrectResize();
+        1:  183:    DeleteCommand_BadInput_ThrowException();
+        1:  184:    DeleteCommand_ValidInput_CorrectRemoval();
+        1:  185:    UpdateCommand_BadInput_ThrowException();
+        1:  186:    UpdateCommand_ValidInput_CorrectUpdate();
+        1:  187:    FilterCommand_MassiveValidInput_CorrectExecution();
+        1:  188:}

@@ -1,0 +1,557 @@
+        -:    0:Source:C:/Users/User/Desktop/lab4/Ui/Ui.cpp
+        -:    0:Graph:C:\Users\User\Desktop\lab4\cmake-build-debug-coverage\CMakeFiles\lab4.dir\Ui\Ui.cpp.gcno
+        -:    0:Data:C:\Users\User\Desktop\lab4\cmake-build-debug-coverage\CMakeFiles\lab4.dir\Ui\Ui.cpp.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://
+        -:    2:// Created by User on 3/18/2021.
+        -:    3://
+        -:    4:
+        -:    5:#include "Ui.h"
+        -:    6:#include "../AppException.h"
+        -:    7:
+        -:    8:#include <iostream>
+        -:    9:#include <sstream>
+        -:   10:#include <string>
+        -:   11:using namespace std;
+        -:   12:
+        -:   13:#define FOREVER 1
+        -:   14:
+        1:   15:UI::UI()
+        1:   15-block  0
+        -:   16:{
+        1:   17:    Controller = new Service;
+        1:   17-block  0
+    %%%%%:   17-block  1
+        1:   18:}
+        1:   18-block  0
+        -:   19:
+        -:   20://void UI:: Inputs()
+        -:   21:
+        -:   22:
+        -:   23:// Display menus
+    #####:   24:void UI::DisplayModeHelp()
+    $$$$$:   24-block  0
+        -:   25:{
+    #####:   26:    cout << "\n";
+    $$$$$:   26-block  0
+    #####:   27:    cout << "-- Help Menu --" << "\n";
+    #####:   28:    cout << "mode A" << "\n";
+    #####:   29:    cout << "mode B" << "\n";
+    #####:   30:    cout << "help" << "\n";
+    #####:   31:    cout << "exit" << "\n";
+    #####:   32:    cout << "\n";
+    #####:   33:}
+        -:   34:
+    #####:   35:void UI::DisplayHelp()
+    $$$$$:   35-block  0
+        -:   36:{
+    #####:   37:    cout << "\n";
+    $$$$$:   37-block  0
+    #####:   38:    cout << "-- Help Menu --" << "\n";
+    #####:   39:    cout << "add [Id], [Size], [Colour],[Price], [Quantity], [Photograph]" << "\n";
+    #####:   40:    cout << "delete [Id]" << "\n";
+    #####:   41:    cout << "update [Id], [New Size], [New Colour], [New Price], [New Quantity], [New Photograph]" << "\n";
+    #####:   42:    cout << "list" << "\n";
+    #####:   43:    cout << "exit" << "\n";
+    #####:   44:    cout << "\n";
+    #####:   45:}
+        -:   46:
+        -:   47:// Below are some helpful functions for numbers represented as strings
+    #####:   48:bool UI::StringIsFloat(string AnyString)
+    $$$$$:   48-block  0
+        -:   49:{
+    #####:   50:    int DotCount = 0;
+    #####:   51:    for (int i = 0; i < AnyString.length(); i++)
+    $$$$$:   51-block  0
+    $$$$$:   51-block  1
+    $$$$$:   51-block  2
+    #####:   52:        if (AnyString[i] == '.')
+    $$$$$:   52-block  0
+    #####:   53:            DotCount++;
+    $$$$$:   53-block  0
+    #####:   54:        else if (AnyString[i] < '0' || AnyString[i] > '9')
+    $$$$$:   54-block  0
+    $$$$$:   54-block  1
+    $$$$$:   54-block  2
+    $$$$$:   54-block  3
+    $$$$$:   54-block  4
+    #####:   55:            return false;
+    $$$$$:   55-block  0
+    #####:   56:    if (DotCount <= 1)
+    $$$$$:   56-block  0
+    #####:   57:        return true;
+    $$$$$:   57-block  0
+    #####:   58:    else return false;
+    $$$$$:   58-block  0
+        -:   59:}
+        -:   60:
+        -:   61:
+        -:   62:
+    #####:   63:bool UI::StringIsInt(string AnyString)
+    $$$$$:   63-block  0
+        -:   64:{
+    #####:   65:    for (int i = 0; i < AnyString.length(); i++)
+    $$$$$:   65-block  0
+    $$$$$:   65-block  1
+    $$$$$:   65-block  2
+    #####:   66:        if (AnyString[i] < '0' || AnyString[i] > '9')
+    $$$$$:   66-block  0
+    $$$$$:   66-block  1
+    $$$$$:   66-block  2
+    $$$$$:   66-block  3
+    $$$$$:   66-block  4
+    #####:   67:            return false;
+    $$$$$:   67-block  0
+    #####:   68:    return true;
+    $$$$$:   68-block  0
+        -:   69:}
+        -:   70:
+    #####:   71:int UI::StringToInt(string AnyString)
+    $$$$$:   71-block  0
+        -:   72:{
+    #####:   73:    if (StringIsInt(AnyString) == false)
+    $$$$$:   73-block  0
+    $$$$$:   73-block  1
+    %%%%%:   73-block  2
+    #####:   74:        throw AppException();
+    $$$$$:   74-block  0
+    #####:   75:    int Number = 0;
+    #####:   76:    for (int i = 0; i < AnyString.length(); i++)
+    $$$$$:   76-block  0
+    $$$$$:   76-block  1
+    #####:   77:        Number = Number * 10 + AnyString[i] - '0';
+    $$$$$:   77-block  0
+    #####:   78:    return Number;
+    $$$$$:   78-block  0
+    $$$$$:   78-block  1
+        -:   79:}
+        -:   80:
+        -:   81:// Turn parameters to their right type
+        -:   82:// And then execute the command
+    #####:   83:void UI::AddCommandPreparation(string NewId, string NewSize, string NewColour, string NewPrice, string NewQuantity, string NewPhotograph)
+    $$$$$:   83-block  0
+        -:   84:{
+        -:   85:    // Validations...
+    #####:   86:    if (StringIsInt(NewPrice) == false || StringIsInt(NewQuantity) == false)
+    $$$$$:   86-block  0
+    $$$$$:   86-block  1
+    $$$$$:   86-block  2
+    $$$$$:   86-block  3
+    $$$$$:   86-block  4
+    $$$$$:   86-block  5
+    $$$$$:   86-block  6
+    $$$$$:   86-block  7
+    $$$$$:   86-block  8
+    $$$$$:   86-block  9
+    $$$$$:   86-block 10
+    $$$$$:   86-block 11
+    $$$$$:   86-block 12
+    %%%%%:   86-block 13
+    %%%%%:   86-block 14
+    %%%%%:   86-block 15
+    %%%%%:   86-block 16
+    %%%%%:   86-block 17
+    %%%%%:   86-block 18
+    #####:   87:        throw AppException();
+    $$$$$:   87-block  0
+    #####:   88:    int NewPriceAsInt = StringToInt(NewPrice);
+    $$$$$:   88-block  0
+    $$$$$:   88-block  1
+    %%%%%:   88-block  2
+    #####:   89:    int NewQuantityAsInt = StringToInt(NewQuantity);
+    $$$$$:   89-block  0
+    %%%%%:   89-block  1
+    #####:   90:    Controller->AddCommand(NewId, NewSize,NewColour,  NewPriceAsInt, NewQuantityAsInt,  NewPhotograph);
+    $$$$$:   90-block  0
+    $$$$$:   90-block  1
+    $$$$$:   90-block  2
+    %%%%%:   90-block  3
+    %%%%%:   90-block  4
+    %%%%%:   90-block  5
+    #####:   91:}
+        -:   92:
+        -:   93:// Turn parameters to their right type
+        -:   94:// And then execute the command
+    #####:   95:void UI::UpdateCommandPreparation(string OldId, string NewSize, string NewColour, string NewPrice, string NewQuantity, string NewPhotograph)
+    $$$$$:   95-block  0
+        -:   96:{
+        -:   97:    // Validations...
+    #####:   98:    if (StringIsInt(NewPrice) == false || StringIsInt(NewQuantity) == false)
+    $$$$$:   98-block  0
+    $$$$$:   98-block  1
+    $$$$$:   98-block  2
+    $$$$$:   98-block  3
+    $$$$$:   98-block  4
+    $$$$$:   98-block  5
+    $$$$$:   98-block  6
+    $$$$$:   98-block  7
+    $$$$$:   98-block  8
+    $$$$$:   98-block  9
+    $$$$$:   98-block 10
+    $$$$$:   98-block 11
+    $$$$$:   98-block 12
+    %%%%%:   98-block 13
+    %%%%%:   98-block 14
+    %%%%%:   98-block 15
+    %%%%%:   98-block 16
+    %%%%%:   98-block 17
+    %%%%%:   98-block 18
+    #####:   99:        throw AppException();
+    $$$$$:   99-block  0
+    #####:  100:    int NewPriceAsInt = StringToInt(NewPrice);
+    $$$$$:  100-block  0
+    $$$$$:  100-block  1
+    %%%%%:  100-block  2
+    #####:  101:    int NewQuantityAsInt = StringToInt(NewQuantity);
+    $$$$$:  101-block  0
+    %%%%%:  101-block  1
+    #####:  102:    Controller->UpdateCommand( OldId, NewSize,NewColour,  NewPriceAsInt, NewQuantityAsInt,  NewPhotograph);}
+    $$$$$:  102-block  0
+    $$$$$:  102-block  1
+    $$$$$:  102-block  2
+    $$$$$:  102-block  3
+    %%%%%:  102-block  4
+    %%%%%:  102-block  5
+    %%%%%:  102-block  6
+    %%%%%:  102-block  7
+        -:  103:
+        -:  104:// Generate a string representation of an organic fragment
+    #####:  105:string UI::StringifyTrenchCoat(TrenchCoat* SomeTrenchCoat)
+    $$$$$:  105-block  0
+        -:  106:{
+    #####:  107:    stringstream StringStream;
+    $$$$$:  107-block  0
+    $$$$$:  107-block  1
+    %%%%%:  107-block  2
+    #####:  108:    StringStream << "Id: " << SomeTrenchCoat->GetId() << " | Size: " << SomeTrenchCoat->GetSize() << " | Colour: " << SomeTrenchCoat->GetColour() << " | Price: " << SomeTrenchCoat->GetPrice();
+    $$$$$:  108-block  0
+    $$$$$:  108-block  1
+    $$$$$:  108-block  2
+    $$$$$:  108-block  3
+    $$$$$:  108-block  4
+    $$$$$:  108-block  5
+    $$$$$:  108-block  6
+    $$$$$:  108-block  7
+    $$$$$:  108-block  8
+    $$$$$:  108-block  9
+    $$$$$:  108-block 10
+    $$$$$:  108-block 11
+    $$$$$:  108-block 12
+    %%%%%:  108-block 13
+    %%%%%:  108-block 14
+    %%%%%:  108-block 15
+    #####:  109:    StringStream << " | Quantity: " << SomeTrenchCoat->GetQuantity() << " | Photograph: " << SomeTrenchCoat->GetPhotograph();
+    $$$$$:  109-block  0
+    $$$$$:  109-block  1
+    $$$$$:  109-block  2
+    $$$$$:  109-block  3
+    $$$$$:  109-block  4
+    $$$$$:  109-block  5
+    %%%%%:  109-block  6
+    #####:  110:    return StringStream.str();
+    $$$$$:  110-block  0
+    $$$$$:  110-block  1
+        -:  111:}
+        -:  112:
+    #####:  113:void UI::DisplayList(DynamicArray* SomeArrayOfTrenchCoats)
+    $$$$$:  113-block  0
+        -:  114:{
+    #####:  115:    int Count = SomeArrayOfTrenchCoats->GetCount();
+    $$$$$:  115-block  0
+    #####:  116:    for (int i = 0; i < Count; i++)
+    $$$$$:  116-block  0
+    #####:  117:        cout << StringifyTrenchCoat((*SomeArrayOfTrenchCoats)[i]) << "\n";
+    $$$$$:  117-block  0
+    $$$$$:  117-block  1
+    $$$$$:  117-block  2
+    %%%%%:  117-block  3
+    #####:  118:    delete SomeArrayOfTrenchCoats;
+    $$$$$:  118-block  0
+    $$$$$:  118-block  1
+    #####:  119:}
+    $$$$$:  119-block  0
+        -:  120:
+        -:  121:// Handling the Mode A commands
+    #####:  122:void UI::ModeA()
+    $$$$$:  122-block  0
+    #####:  123:{   Controller->Inputs();
+    $$$$$:  123-block  0
+    #####:  124:    string Command;
+    $$$$$:  124-block  0
+    $$$$$:  124-block  1
+    %%%%%:  124-block  2
+        -:  125:    while (FOREVER)
+        -:  126:    {
+        -:  127:        try {
+    #####:  128:            cout << "> ";
+    $$$$$:  128-block  0
+    #####:  129:            cin >> Command;
+    $$$$$:  129-block  0
+    #####:  130:            if (Command == "help")
+    $$$$$:  130-block  0
+    $$$$$:  130-block  1
+        -:  131:            {
+    #####:  132:                cin.ignore(100, '\n');
+    $$$$$:  132-block  0
+    #####:  133:                DisplayHelp();
+    $$$$$:  133-block  0
+    $$$$$:  133-block  1
+        -:  134:            }
+    #####:  135:            else if (Command == "add")
+    $$$$$:  135-block  0
+    $$$$$:  135-block  1
+        -:  136:            {
+    #####:  137:                string Id, Size, Colour, Price, Quantity, Photograph;
+    $$$$$:  137-block  0
+    %%%%%:  137-block  1
+    %%%%%:  137-block  2
+    %%%%%:  137-block  3
+    %%%%%:  137-block  4
+    %%%%%:  137-block  5
+    %%%%%:  137-block  6
+    %%%%%:  137-block  7
+    #####:  138:                cin >> Id >> Size >>Colour >> Price >> Quantity >> Photograph;
+    $$$$$:  138-block  0
+    $$$$$:  138-block  1
+    $$$$$:  138-block  2
+    $$$$$:  138-block  3
+    $$$$$:  138-block  4
+    #####:  139:                if (Id.back() == ',')
+    $$$$$:  139-block  0
+    #####:  140:                    Id.pop_back();
+    $$$$$:  140-block  0
+    #####:  141:                if (Size.back() == ',')
+    $$$$$:  141-block  0
+    #####:  142:                    Size.pop_back();
+    $$$$$:  142-block  0
+    #####:  143:                if (Colour.back() == ',')
+    $$$$$:  143-block  0
+    #####:  144:                    Colour.pop_back();
+    $$$$$:  144-block  0
+    #####:  145:                if (Price.back() == ',')
+    $$$$$:  145-block  0
+    #####:  146:                    Price.pop_back();
+    $$$$$:  146-block  0
+    #####:  147:                if (Quantity.back() == ',')
+    $$$$$:  147-block  0
+    #####:  148:                    Quantity.pop_back();
+    $$$$$:  148-block  0
+    #####:  149:                if (Photograph.back() == ',')
+    $$$$$:  149-block  0
+    #####:  150:                    Photograph.pop_back();
+    $$$$$:  150-block  0
+    #####:  151:                cin.ignore(1000, '\n');
+    $$$$$:  151-block  0
+    #####:  152:                AddCommandPreparation(Id, Size, Colour,Price, Quantity, Photograph);
+    $$$$$:  152-block  0
+    $$$$$:  152-block  1
+    $$$$$:  152-block  2
+    $$$$$:  152-block  3
+    $$$$$:  152-block  4
+    $$$$$:  152-block  5
+    $$$$$:  152-block  6
+    $$$$$:  152-block  7
+    %%%%%:  152-block  8
+    %%%%%:  152-block  9
+    %%%%%:  152-block 10
+    %%%%%:  152-block 11
+    %%%%%:  152-block 12
+    %%%%%:  152-block 13
+        -:  153:            }
+    #####:  154:            else if (Command == "delete")
+    $$$$$:  154-block  0
+    $$$$$:  154-block  1
+        -:  155:            {
+    #####:  156:                string Id;
+    $$$$$:  156-block  0
+    %%%%%:  156-block  1
+    %%%%%:  156-block  2
+    #####:  157:                cin >> Id;
+    #####:  158:                cin.ignore(1000, '\n');
+    $$$$$:  158-block  0
+    #####:  159:                Controller->DeleteCommand(Id);
+    $$$$$:  159-block  0
+    $$$$$:  159-block  1
+    $$$$$:  159-block  2
+    %%%%%:  159-block  3
+        -:  160:            }
+    #####:  161:            else if (Command == "update")
+    $$$$$:  161-block  0
+    $$$$$:  161-block  1
+        -:  162:            {
+    #####:  163:                string Id, Size, Colour, Price, Quantity, Photograph;
+    $$$$$:  163-block  0
+    %%%%%:  163-block  1
+    %%%%%:  163-block  2
+    %%%%%:  163-block  3
+    %%%%%:  163-block  4
+    %%%%%:  163-block  5
+    %%%%%:  163-block  6
+    %%%%%:  163-block  7
+    %%%%%:  163-block  8
+    %%%%%:  163-block  9
+    #####:  164:                cin >> Id >> Size >> Colour>>Price >> Quantity >> Photograph;
+    $$$$$:  164-block  0
+    $$$$$:  164-block  1
+    $$$$$:  164-block  2
+    $$$$$:  164-block  3
+    $$$$$:  164-block  4
+    #####:  165:                if (Id.back() == ',')
+    $$$$$:  165-block  0
+    #####:  166:                    Id.pop_back();
+    $$$$$:  166-block  0
+    #####:  167:                if (Size.back() == ',')
+    $$$$$:  167-block  0
+    #####:  168:                    Size.pop_back();
+    $$$$$:  168-block  0
+    #####:  169:                if (Colour.back() == ',')
+    $$$$$:  169-block  0
+    #####:  170:                    Colour.pop_back();
+    $$$$$:  170-block  0
+    #####:  171:                if (Price.back() == ',')
+    $$$$$:  171-block  0
+    #####:  172:                    Price.pop_back();
+    $$$$$:  172-block  0
+    #####:  173:                if (Quantity.back() == ',')
+    $$$$$:  173-block  0
+    #####:  174:                    Quantity.pop_back();
+    $$$$$:  174-block  0
+    #####:  175:                if (Photograph.back() == ',')
+    $$$$$:  175-block  0
+    #####:  176:                    Photograph.pop_back();
+    $$$$$:  176-block  0
+    #####:  177:                cin.ignore(1000, '\n');
+    $$$$$:  177-block  0
+    #####:  178:                UpdateCommandPreparation(Id, Size, Colour, Price, Quantity, Photograph);
+    $$$$$:  178-block  0
+    $$$$$:  178-block  1
+    $$$$$:  178-block  2
+    $$$$$:  178-block  3
+    $$$$$:  178-block  4
+    $$$$$:  178-block  5
+    $$$$$:  178-block  6
+    $$$$$:  178-block  7
+    %%%%%:  178-block  8
+    %%%%%:  178-block  9
+    %%%%%:  178-block 10
+    %%%%%:  178-block 11
+    %%%%%:  178-block 12
+    %%%%%:  178-block 13
+        -:  179:            }
+    #####:  180:            else if (Command == "list")
+    $$$$$:  180-block  0
+    $$$$$:  180-block  1
+        -:  181:            {
+    #####:  182:                cin.ignore(1000, '\n');
+    $$$$$:  182-block  0
+    #####:  183:                DisplayList(Controller->ListCommand());
+    $$$$$:  183-block  0
+    $$$$$:  183-block  1
+    $$$$$:  183-block  2
+        -:  184:            }
+    #####:  185:            else if (Command == "exit")
+    $$$$$:  185-block  0
+    $$$$$:  185-block  1
+        -:  186:            {
+    #####:  187:                cin.ignore(1000, '\n');
+    $$$$$:  187-block  0
+    #####:  188:                break;
+    $$$$$:  188-block  0
+        -:  189:            }
+        -:  190:            else
+        -:  191:            {
+    #####:  192:                cin.ignore(1000, '\n');
+    $$$$$:  192-block  0
+    #####:  193:                cout << "Command not found!" << "\n";
+    $$$$$:  193-block  0
+    $$$$$:  193-block  1
+        -:  194:            }
+        -:  195:        }
+    =====:  196:        catch (AppException &error)
+    %%%%%:  196-block  0
+    %%%%%:  196-block  1
+    %%%%%:  196-block  2
+        -:  197:        {
+    =====:  198:            cout << error.what() << "\n";
+    %%%%%:  198-block  0
+        -:  199:        }
+    #####:  200:    }
+    $$$$$:  200-block  0
+    #####:  201:    delete Controller;
+    $$$$$:  201-block  0
+    $$$$$:  201-block  1
+    #####:  202:}
+        -:  203:
+        -:  204:// Handling the Mode selection menu
+        1:  205:void UI::Start()
+        1:  205-block  0
+        -:  206:{
+        1:  207:    string Command, ModeType;
+        1:  207-block  0
+    $$$$$:  207-block  1
+    %%%%%:  207-block  2
+    %%%%%:  207-block  3
+        -:  208:    while (FOREVER)
+        -:  209:    {
+        1:  210:        cout << "> ";
+        1:  210-block  0
+    $$$$$:  210-block  1
+        1:  211:        cin >> Command;
+        1:  211-block  0
+    #####:  212:        if (Command == "help")
+    $$$$$:  212-block  0
+    $$$$$:  212-block  1
+        -:  213:        {
+    #####:  214:            DisplayModeHelp();
+    $$$$$:  214-block  0
+    #####:  215:            cin.ignore(1000, '\n');
+    $$$$$:  215-block  0
+    $$$$$:  215-block  1
+        -:  216:        }
+    #####:  217:        else if (Command == "mode")
+    $$$$$:  217-block  0
+    $$$$$:  217-block  1
+        -:  218:        {
+    #####:  219:            cin >> ModeType;
+    $$$$$:  219-block  0
+    #####:  220:            if (ModeType == "A")
+    $$$$$:  220-block  0
+    $$$$$:  220-block  1
+        -:  221:            {
+    #####:  222:                cout << "You have chosen mode A!" << "\n";
+    $$$$$:  222-block  0
+    $$$$$:  222-block  1
+    #####:  223:                cin.ignore(1000, '\n');
+    $$$$$:  223-block  0
+    #####:  224:                ModeA();
+    $$$$$:  224-block  0
+    #####:  225:                break;
+    $$$$$:  225-block  0
+        -:  226:                cout << "You have returned to the previous menu!\n";
+        -:  227:            }
+    #####:  228:            else if (ModeType == "B");
+    $$$$$:  228-block  0
+    $$$$$:  228-block  1
+        -:  229:        }
+    #####:  230:        else if (Command == "exit")
+    $$$$$:  230-block  0
+    $$$$$:  230-block  1
+        -:  231:        {
+    #####:  232:            break;
+    $$$$$:  232-block  0
+        -:  233:        }
+        -:  234:        else {
+    #####:  235:            cin.ignore(1000, '\n');
+    $$$$$:  235-block  0
+    #####:  236:            cout << "Command not found!" << "\n";
+    $$$$$:  236-block  0
+    $$$$$:  236-block  1
+        -:  237:        }
+        -:  238:    }
+        4:  239:}
+        1:  239-block  0
+        1:  239-block  1
+        1:  239-block  2
+        1:  239-block  3
+        1:  239-block  4

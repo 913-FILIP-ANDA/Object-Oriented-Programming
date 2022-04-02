@@ -1,0 +1,44 @@
+        -:    0:Source:c:/users/user/desktop/lab4/repository/repo.h
+        -:    0:Graph:C:\Users\User\Desktop\lab4\cmake-build-debug-coverage\CMakeFiles\lab4.dir\service\Service.cpp.gcno
+        -:    0:Data:C:\Users\User\Desktop\lab4\cmake-build-debug-coverage\CMakeFiles\lab4.dir\service\Service.cpp.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://
+        -:    2:// Created by User on 3/18/2021.
+        -:    3://
+        -:    4:
+        -:    5:#include "../Vector/DynamicArray.h"
+        -:    6:
+        -:    7:#ifndef LAB4_REPO_H
+        -:    8:#define LAB4_REPO_H
+        -:    9:
+        -:   10:#endif //LAB4_REPO_H
+        -:   11:#pragma once
+        -:   12:
+        -:   13:class TrenchCoatRepository
+        -:   14:{
+        -:   15:private:
+        -:   16:    DynamicArray* RepositoryStorage;
+        -:   17:public:
+        -:   18:    // Constructor
+        -:   19:    TrenchCoatRepository();
+        -:   20:
+        -:   21:    // Destructor
+        -:   22:    ~TrenchCoatRepository();
+        -:   23:
+        -:   24:    // Setters
+        -:   25:    void AddCoat(TrenchCoat* SomeTrenchCoat);
+        -:   26:    void DeleteCoat(const string& TrenchCoatId);
+        -:   27:    void UpdateCoat(const string& TrenchCoatId, TrenchCoat* NewTrenchCoat);
+        -:   28:
+        -:   29:    // Getters
+        -:   30:    TrenchCoat* Search(const string& TrenchCoatId);
+      978:   31:    DynamicArray* Filter(bool (*FilterFunction)(TrenchCoat* SomeTrenchCoat) = [](TrenchCoat*) {return true; }); // Initial declaration using a lambda function
+        5:   31-block  0
+        5:   31-block  1
+      242:   31-block  2
+      242:   31-block  3
+      242:   31-block  4
+      242:   31-block  5
+        -:   32:
+        -:   33:};

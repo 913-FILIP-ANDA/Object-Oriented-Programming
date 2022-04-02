@@ -1,0 +1,3 @@
+C:/Users/User/Desktop/lab4/cmake-build-debug-coverage/CMakeFiles/edit_cache.dir
+C:/Users/User/Desktop/lab4/cmake-build-debug-coverage/CMakeFiles/lab4.dir
+C:/Users/User/Desktop/lab4/cmake-build-debug-coverage/CMakeFiles/rebuild_cache.dir

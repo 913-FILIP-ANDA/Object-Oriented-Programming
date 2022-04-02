@@ -1,0 +1,123 @@
+        -:    0:Source:C:/Users/User/Desktop/lab4/Repository/Repo.cpp
+        -:    0:Graph:C:\Users\User\Desktop\lab4\cmake-build-debug-coverage\CMakeFiles\lab4.dir\Repository\Repo.cpp.gcno
+        -:    0:Data:C:\Users\User\Desktop\lab4\cmake-build-debug-coverage\CMakeFiles\lab4.dir\Repository\Repo.cpp.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://
+        -:    2:// Created by User on 3/18/2021.
+        -:    3://
+        -:    4:
+        -:    5:
+        -:    6:#include "../Repository/Repo.h"
+        -:    7:#include "../Vector/DynamicArray.h"
+        -:    8:
+        -:    9:using namespace std;
+        -:   10:#define FIRST_INDEX 0
+        -:   11:
+        9:   12:TrenchCoatRepository::TrenchCoatRepository()
+        9:   12-block  0
+        -:   13:{
+        9:   14:    this ->RepositoryStorage = new DynamicArray;
+        9:   14-block  0
+    %%%%%:   14-block  1
+        9:   15:}
+        9:   15-block  0
+        -:   16:
+        8:   17:TrenchCoatRepository::~TrenchCoatRepository()
+        8:   17-block  0
+        -:   18:{
+        8:   19:    delete this ->RepositoryStorage;
+        8:   19-block  0
+        8:   19-block  1
+        8:   20:}
+        -:   21:
+      244:   22:void TrenchCoatRepository::AddCoat(TrenchCoat* SomeTrenchCoat)
+      244:   22-block  0
+        -:   23:{
+      244:   24:    this ->RepositoryStorage->Push(SomeTrenchCoat);
+      244:   24-block  0
+      244:   25:}
+        -:   26:
+        1:   27:void TrenchCoatRepository::DeleteCoat(const string& TrenchCoatId)
+        1:   27-block  0
+        -:   28:{
+        1:   29:    int Count = this ->RepositoryStorage->GetCount();
+        1:   29-block  0
+        1:   30:    for(int i = FIRST_INDEX; i< Count;i++)
+        1:   30-block  0
+    $$$$$:   30-block  1
+        1:   31:        if ((*this ->RepositoryStorage)[i]->GetId() == TrenchCoatId)
+        1:   31-block  0
+        -:   32:        {
+        1:   33:            delete (*this ->RepositoryStorage)[i];
+        1:   33-block  0
+        1:   33-block  1
+        1:   34:            for (int j = i; j < Count - 1; j++)
+        1:   34-block  0
+        1:   34-block  1
+    #####:   35:                (*this ->RepositoryStorage)[j] = (*this ->RepositoryStorage)[j + 1];
+    $$$$$:   35-block  0
+        1:   36:            (*this ->RepositoryStorage)[Count - 1] = NULL;
+        1:   36-block  0
+        1:   37:            break;
+        -:   38:        }
+        1:   39:    this ->RepositoryStorage->Pop();
+        1:   39-block  0
+        1:   40:}
+        -:   41:
+        1:   42:void TrenchCoatRepository::UpdateCoat(const string& TrenchCoatId, TrenchCoat* NewTrenchCoat)
+        1:   42-block  0
+        -:   43:{
+        1:   44:    int Count = RepositoryStorage->GetCount();
+        1:   44-block  0
+        2:   45:    for (int i = FIRST_INDEX; i < Count; i++)
+        2:   45-block  0
+        1:   45-block  1
+        1:   46:        if ((*RepositoryStorage)[i]->GetId() == TrenchCoatId)
+        1:   46-block  0
+        -:   47:        {
+        1:   48:            delete (*RepositoryStorage)[i];
+        1:   48-block  0
+        1:   48-block  1
+        1:   49:            (*RepositoryStorage)[i] = NewTrenchCoat;
+        1:   49-block  0
+        -:   50:        }
+        1:   51:}
+        -:   52:
+      249:   53:TrenchCoat* TrenchCoatRepository::Search(const string& TrenchCoatId)
+      249:   53-block  0
+        -:   54:{
+      249:   55:    int Count = RepositoryStorage->GetCount();
+      249:   55-block  0
+    14529:   56:    for (int i = FIRST_INDEX; i < Count; i++)
+    14529:   56-block  0
+    14280:   56-block  1
+    14283:   57:        if ((*RepositoryStorage)[i]->GetId() == TrenchCoatId)
+    14283:   57-block  0
+        3:   58:            return (*RepositoryStorage)[i];
+        3:   58-block  0
+      246:   59:    return NULL;
+      246:   59-block  0
+        -:   60:}
+        -:   61:
+        5:   62:DynamicArray* TrenchCoatRepository::Filter(bool(*FilterFunction)(TrenchCoat* SomeTrenchCoat))
+        5:   62-block  0
+        -:   63:{
+        5:   64:    int Count = RepositoryStorage->GetCount();
+        5:   64-block  0
+        5:   65:    DynamicArray* FilteredList = new DynamicArray;
+    %%%%%:   65-block  0
+      247:   66:    for (int i = FIRST_INDEX; i < Count; i++)
+        5:   66-block  0
+      247:   66-block  1
+      242:   66-block  2
+      242:   67:        if (FilterFunction((*RepositoryStorage)[i]) == true)
+      242:   67-block  0
+      242:   68:            FilteredList->Push(new TrenchCoat((*RepositoryStorage)[i]));
+      242:   68-block  0
+      242:   68-block  1
+    %%%%%:   68-block  2
+        5:   69:    return FilteredList;
+        5:   69-block  0
+        5:   69-block  1
+        -:   70:}

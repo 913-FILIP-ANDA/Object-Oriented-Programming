@@ -1,0 +1,9 @@
+# ninja log v5
+15	1990	638126873	CMakeFiles/lab4.dir/Vector/DynamicArray.cpp.obj	96790587b0d3e8ac
+25	2048	638126873	CMakeFiles/lab4.dir/Repository/Repo.cpp.obj	9ca4fbc88e46a7bd
+20	2127	638126873	CMakeFiles/lab4.dir/service/Service.cpp.obj	c07acd70361ce592
+10	2219	638126873	CMakeFiles/lab4.dir/Domain/TrenchCoat.cpp.obj	679beba1e3c12f6e
+29	2949	638126874	CMakeFiles/lab4.dir/Ui/Ui.cpp.obj	f2e2e535f6266965
+3	2964	638126874	CMakeFiles/lab4.dir/main.cpp.obj	43ef5b3dbe712549
+1991	3352	638126875	CMakeFiles/lab4.dir/Test/Test.cpp.obj	94b825a9d65ebe5e
+3353	5050	638126876	lab4.exe	a3a2e80d83273956
